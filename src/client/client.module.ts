@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { ClientController } from './client.controller';
 import { AbilityModule } from 'src/ability/ability.module';
@@ -8,4 +8,8 @@ import { AbilityModule } from 'src/ability/ability.module';
   controllers: [ClientController],
   providers: [ClientService]
 })
-export class ClientModule {}
+export class ClientModule implements OnModuleInit {
+  onModuleInit() {
+    console.log("client module initialized")
+  }
+}

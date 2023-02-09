@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, OnModuleInit } from '@nestjs/common';
 import { AbilityFactory, Action } from 'src/ability/ability.factory';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
@@ -6,9 +6,11 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { Client } from './entities/client.entity';
 
 @Controller('client')
-export class ClientController {
+export class ClientController  implements OnModuleInit {
   constructor(private readonly clientService: ClientService, private abilityFactory: AbilityFactory) {}
-
+  onModuleInit() {
+    console.log("Client controller init")
+  }
   @Post()
   create(@Body() createClientDto: CreateClientDto) {
     const user = {
